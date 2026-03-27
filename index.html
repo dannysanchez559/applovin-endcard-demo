@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=320, initial-scale=1.0" />
+  <title>FitForge – End Card</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 320px;
+      height: 480px;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    /* ── Background ── */
+    .card {
+      width: 320px;
+      height: 480px;
+      position: relative;
+      background: linear-gradient(160deg, #0f0c29, #1a1a40 40%, #24243e);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+
+    /* subtle radial glow behind icon */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(255,80,80,0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ── Close button ── */
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: #fff;
+      font-size: 14px;
+      line-height: 28px;
+      text-align: center;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    /* ── App Icon ── */
+    .app-icon {
+      width: 88px;
+      height: 88px;
+      border-radius: 20px;
+      background: linear-gradient(145deg, #ff4e50, #f9d423);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 32px rgba(255,78,80,0.5);
+      margin-top: 20px;
+      flex-shrink: 0;
+    }
+
+    /* SVG dumbbell icon — inline, no external assets */
+    .app-icon svg {
+      width: 52px;
+      height: 52px;
+      fill: #fff;
+    }
+
+    /* ── App name ── */
+    .app-name {
+      margin-top: 14px;
+      font-size: 22px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Star rating ── */
+    .rating {
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .stars {
+      color: #f9d423;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    .rating-text {
+      color: rgba(255,255,255,0.55);
+      font-size: 12px;
+    }
+
+    /* ── Headline ── */
+    .headline {
+      margin-top: 18px;
+      font-size: 15px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      text-align: center;
+      line-height: 1.45;
+      padding: 0 28px;
+    }
+
+    .headline span {
+      color: #f9d423;
+    }
+
+    /* ── CTA Button ── */
+    .cta-btn {
+      margin-top: 28px;
+      width: 220px;
+      height: 52px;
+      border-radius: 30px;
+      border: none;
+      background: linear-gradient(90deg, #ff4e50, #f9d423);
+      color: #fff;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      position: relative;
+      box-shadow: 0 6px 24px rgba(255,78,80,0.55);
+      animation: pulse 1.8s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    .cta-btn:active {
+      transform: scale(0.96);
+    }
+
+    @keyframes pulse {
+      0%   { box-shadow: 0 6px 24px rgba(255,78,80,0.55); transform: scale(1); }
+      50%  { box-shadow: 0 8px 36px rgba(255,78,80,0.85); transform: scale(1.04); }
+      100% { box-shadow: 0 6px 24px rgba(255,78,80,0.55); transform: scale(1); }
+    }
+
+    /* ── Fine print ── */
+    .fine-print {
+      margin-top: 14px;
+      font-size: 10px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ── Fade-in on load ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card > * {
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .close-btn   { animation-delay: 0.1s; }
+    .app-icon    { animation-delay: 0.15s; }
+    .app-name    { animation-delay: 0.2s; }
+    .rating      { animation-delay: 0.25s; }
+    .headline    { animation-delay: 0.3s; }
+    .cta-btn     { animation-delay: 0.4s; }
+    .fine-print  { animation-delay: 0.45s; }
+  </style>
+</head>
+<body>
+  <div class="card">
+
+    <button class="close-btn" onclick="closeAd()">✕</button>
+
+    <!-- App Icon with inline SVG dumbbell -->
+    <div class="app-icon">
+      <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <!-- left collar -->
+        <rect x="4" y="26" width="8" height="12" rx="3"/>
+        <!-- left plate -->
+        <rect x="1" y="22" width="5" height="20" rx="2.5"/>
+        <!-- bar -->
+        <rect x="12" y="29" width="40" height="6" rx="3"/>
+        <!-- right collar -->
+        <rect x="52" y="26" width="8" height="12" rx="3"/>
+        <!-- right plate -->
+        <rect x="58" y="22" width="5" height="20" rx="2.5"/>
+      </svg>
+    </div>
+
+    <div class="app-name">FitForge</div>
+
+    <div class="rating">
+      <span class="stars">★★★★★</span>
+      <span class="rating-text">4.9 · 128K reviews</span>
+    </div>
+
+    <div class="headline">
+      Build the body you want —<br/>
+      <span>in just 15 minutes a day.</span>
+    </div>
+
+    <button class="cta-btn" onclick="installApp()">
+      Download Free
+    </button>
+
+    <div class="fine-print">Free · In-app purchases available</div>
+
+  </div>
+
+  <script>
+    // MRAID shim — in production this is injected by the AppLovin SDK.
+    // For demo purposes we define a lightweight stub so the logic below works
+    // in any browser without errors.
+    if (typeof mraid === 'undefined') {
+      window.mraid = {
+        open: function(url) {
+          window.open(url, '_blank');
+        },
+        close: function() {
+          console.log('mraid.close() called');
+        }
+      };
+    }
+
+    function installApp() {
+      // Replace with real store URL before trafficking
+      mraid.open('https://apps.apple.com');
+    }
+
+    function closeAd() {
+      mraid.close();
+    }
+  </script>
+</body>
+</html>
